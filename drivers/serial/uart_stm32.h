@@ -23,6 +23,8 @@ struct uart_stm32_config {
 	bool hw_flow_control;
 	/* initial parity, 0 for none, 1 for odd, 2 for even */
 	int  parity;
+	/* switch to enable single wire / half duplex feature */
+	bool single_wire;
 	const struct soc_gpio_pinctrl *pinctrl_list;
 	size_t pinctrl_list_size;
 };

@@ -18,6 +18,15 @@ properties:
         Configures the parity of the adapter. Value 0 for none, 1 for odd
         and 2 for even parity.  Default to none if not specified.
 
+    single-wire:
+      type: boolean
+      required: false
+      description: |
+        Enable the single wire half-duplex communication.
+        Using this mode, TX and RX lines are internally connected and
+        only TX pin is used afterwards and should be configured.
+        RX/TX conflicts must be handled on user side.
+
     pinctrl-0:
       type: phandles
       required: false

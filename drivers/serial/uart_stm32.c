@@ -1362,6 +1362,11 @@ static int uart_stm32_init(const struct device *dev)
 	/* Set the default baudrate */
 	uart_stm32_set_baudrate(dev, data->baud_rate);
 
+	/* Enable the single wire / half-duplex mode */
+	if (config->single_wire) {
+		LL_USART_EnableHalfDuplex(UartInstance);
+	}
+
 	LL_USART_Enable(UartInstance);
 
 #ifdef USART_ISR_TEACK
@@ -1469,6 +1474,7 @@ static const struct uart_stm32_config uart_stm32_cfg_##index = {	\
 	},								\
 	.hw_flow_control = DT_INST_PROP(index, hw_flow_control),	\
 	.parity = DT_INST_PROP_OR(index, parity, UART_CFG_PARITY_NONE),	\
+	.single_wire = DT_INST_PROP_OR(index, single_wire, false), \
 	.pinctrl_list = uart_pins_##index,				\
 	.pinctrl_list_size = ARRAY_SIZE(uart_pins_##index),		\
 };									\
